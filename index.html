@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIL STORE</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <!-- AUDIO UNLOCK OVERLAY -->
+    <div id="audio-unlock" class="audio-overlay" onclick="unlockAudio()">
+        <div class="audio-content">
+            <h2>Klik Untuk Masuk</h2>
+            <p>Mengaktifkan visual & audio</p>
+        </div>
+    </div>
+
+    <!-- ================= HALAMAN 1: SPLASH ================= -->
+    <div id="page-splash" class="page active">
+        <video muted autoplay loop playsinline class="bg-video" id="vid-splash">
+            <source src="ssstik.io_1794179351725.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <button class="btn-top-left hidden" id="btn-exit" onclick="exitWeb()">✕ Keluar</button>
+        <div class="content-splash">
+            <h1 class="title-splash hidden" id="title-splash">Welcome To My<br>Portfolio Website</h1>
+            <div class="loading-container" id="loading-container">
+                <div class="loading-bar-bg"><div class="loading-bar-fill" id="loading-fill"></div></div>
+                <span class="loading-text" id="loading-text">Loading 0%</span>
+            </div>
+        </div>
+        <button class="btn-nav btn-next-splash hidden" id="btn-next-splash" onclick="nextPage('page-home')">Selanjutnya <span class="arrow">➔</span></button>
+    </div>
+
+    <!-- ================= HALAMAN 2: HOMEPAGE ================= -->
+    <div id="page-home" class="page">
+        <video loop playsinline class="bg-video" id="vid-home">
+            <source src="ssstik.io_1794179499112.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <button class="btn-top-left" onclick="nextPage('page-splash')">← Kembali</button>
+
+        <div class="content-home">
+            <h1 class="logo-aril">ARIL <span class="logo-store">STORE</span></h1>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                <button class="btn-main" onclick="checkAuthAndGoCatalog()">LIHAT KATALOG</button>
+                <button class="btn-main btn-admin-login" onclick="openAdminLogin()">ADMIN LOGIN</button>
+            </div>
+        </div>
+        
+        <!-- MEMBER LOGIN PANEL -->
+        <div id="login-panel" class="login-panel hidden">
+            <h3>Member Login</h3>
+            <p style="font-size:0.8rem; color:#aaa; margin-bottom: 15px;">Silakan login untuk membeli produk.</p>
+            <button class="btn-oauth btn-google" onclick="loginSimulasi('Google')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G" width="18"> Login with Google
+            </button>
+            <button class="btn-oauth btn-facebook" onclick="loginSimulasi('Facebook')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="F" width="18"> Login with Facebook
+            </button>
+            <button class="btn-oauth btn-apple" onclick="loginSimulasi('Apple')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="A" width="18" style="filter: invert(1);"> Login with Apple
+            </button>
+            <button class="btn-oauth btn-guest" onclick="loginAsGuest()">Masuk Sebagai Tamu</button>
+        </div>
+    </div>
+
+    <!-- GANTI BAGIAN HALAMAN 3 DI index.html DENGAN INI -->
+    <div id="page-catalog" class="page">
+        <video loop playsinline class="bg-video" id="vid-catalog">
+            <source src="ssstik.io_1794182416878.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        
+        <!-- Tombol Kembali & Keranjang -->
+        <button class="btn-top-left" style="top: 15px;" onclick="nextPage('page-home')">← Kembali</button>
+        <button class="btn-top-left btn-cart" style="top: 75px;" onclick="openCartPanel()">
+            <img src="1001197320-removebg-preview.png" alt="Keranjang" class="cart-icon-img">
+            Keranjang
+        </button>
+
+        <!-- KONTAK WA & TG MELAYANG DI KIRI (Area Lingkaran Hijau) -->
+        <div class="contact-fixed">
+            <p>Butuh Bantuan?</p>
+            <a href="https://wa.me/6285242725765" target="_blank" class="btn-contact-fixed btn-wa-fixed">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" width="20"> WhatsApp
+            </a>
+            <a href="https://t.me/usernamekamu" target="_blank" class="btn-contact-fixed btn-tg-fixed">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="TG" width="20"> Telegram
+            </a>
+        </div>
+
+        <!-- Header Tengah -->
+        <div class="catalog-header-centered">
+            <div class="logo-nav-center">ARIL <span>STORE</span></div>
+            <nav class="category-nav-center">
+                <button class="cat-btn active" onclick="filterCategory('all', this)">All Produk</button>
+                <button class="cat-btn" onclick="filterCategory('ff', this)">Free Fire</button>
+                <button class="cat-btn" onclick="filterCategory('8ball', this)">8Ball Pool</button>
+            </nav>
+            <div class="user-nav-center">
+                <span id="user-display-name">Guest</span>
+                <span id="user-badge" class="badge hidden">ADMIN</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <main class="catalog-main-centered">
+            <div id="product-grid" class="product-grid"></div>
+        </main>
+    </div>
+
+    <!-- ================= HALAMAN 4: DIAMOND ALL GAME ================= -->
+    <div id="page-diamond" class="page">
+        <div class="overlay"></div>
+        <button class="btn-top-left" onclick="openCartPanel()" style="z-index: 10;">← Kembali</button>
+        <div class="poster-bg" style="background-image: url('file_00000000bf408211aab2db8eded566a9.png');"></div>
+        <div class="interactive-layer">
+            <div class="game-logo-grid-poster">
+                <div class="click-zone" onclick="selectGame('Mobile Legends')"></div>
+                <div class="click-zone" onclick="selectGame('Free Fire')"></div>
+                <div class="click-zone" onclick="selectGame('PUBG Mobile')"></div>
+                <div class="click-zone" onclick="selectGame('Genshin Impact')"></div>
+                <div class="click-zone" onclick="selectGame('Honor of Kings')"></div>
+                <div class="click-zone" onclick="selectGame('Roblox')"></div>
+                <div class="click-zone" onclick="selectGame('Call of Duty Mobile')"></div>
+                <div class="click-zone" onclick="selectGame('eFootball')"></div>
+                <div class="click-zone" onclick="selectGame('Honkai Star Rail')"></div>
+                <div class="click-zone" onclick="selectGame('Valorant')"></div>
+                <div class="click-zone" onclick="selectGame('DANA')"></div>
+                <div class="click-zone" onclick="selectGame('Game Lainnya')"></div>
+            </div>
+            <button class="btn-poster-action" onclick="goToDiamondWeb()">🛒 Top Up Sekarang!</button>
+        </div>
+    </div>
+
+    <!-- ================= HALAMAN 5: ARIL BOOKSTORE ================= -->
+    <div id="page-books" class="page">
+        <div class="overlay"></div>
+        <button class="btn-top-left" onclick="openCartPanel()" style="z-index: 10;">← Kembali</button>
+        <div class="poster-bg" style="background-image: url('file_00000000e6e48211899be42716c3539b.png');"></div>
+        <div class="interactive-layer" style="justify-content: flex-end; padding-bottom: 10%;">
+            <button class="btn-poster-action" onclick="goToBookWeb()">🛒 Pesan Sekarang!</button>
+        </div>
+    </div>
+
+    <!-- ================= MODAL KERANJANG (POSTER BARU) ================= -->
+    <div id="cart-modal" class="modal hidden">
+        <div class="cart-modal-content" style="background-image: url('file_00000000c6fc8211b6777033ce387706.png');">
+            <!-- Overlay transparan di atas poster -->
+            <div class="cart-modal-overlay"></div>
+            
+            <!-- Tombol Pilihan di Bawah -->
+            <div class="cart-actions">
+                <button class="btn-cart-action btn-diamond" onclick="closeCartModal(); nextPage('page-diamond');">Top Up Diamond</button>
+                <button class="btn-cart-action btn-book" onclick="closeCartModal(); nextPage('page-books');">Beli Buku</button>
+            </div>
+            
+            <!-- Tombol Close Silang -->
+            <button class="btn-close-cart" onclick="closeCartModal()">✕</button>
+        </div>
+    </div>
+
+    <!-- ================= MODAL PEMBAYARAN ================= -->
+    <div id="payment-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">Pilih Metode Pembayaran</h2>
+            <div class="payment-methods">
+                <div class="payment-group">
+                    <h4>QRIS Otomatis</h4>
+                    <button class="btn-qris" onclick="startPayment('QRIS')">QRIS (GoPay)</button>
+                </div>
+                <div class="payment-group">
+                    <h4>M-Banking</h4>
+                    <button class="btn-bank" onclick="startPayment('BSI')">BSI (Bank Syariah Indonesia)</button>
+                </div>
+            </div>
+            <div class="support-section">
+                <p>Ada masalah Butuh Bantuan!</p>
+                <div class="support-btns">
+                    <a href="https://wa.me/6285242725765" target="_blank" class="btn-contact-fixed btn-wa-fixed">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" width="20"> WhatsApp
+</a>
+</a>
+                    <a href="https://t.me/usernamekamu" target="_blank" class="btn-support btn-tg">Telegram</a>
+                </div>
+            </div>
+            <button class="btn-close-modal" onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div class="admin-panel hidden" id="admin-panel">
+        <h3>Admin Control Panel</h3>
+        <ul id="admin-user-list" class="admin-list">
+            <li><span>Status Server:</span> <span style="color:#00ff00;">Online</span></li>
+            <li><span>Total Member:</span> <span>1,240</span></li>
+            <li><span>Pendapatan Hari Ini:</span> <span style="color:#4da6ff;">Rp 3.500.000</span></li>
+        </ul>
+        <button class="btn-close-admin" onclick="toggleAdminPanel()">Tutup</button>
+    </div>
+
+    <!-- ================= AI WIDGET ================= -->
+    <button class="ai-fab-top" id="ai-fab" onclick="toggleAI()">
+        <img src="file_0000000032808211a1c3118995e35fc7.png" alt="AI">
+    </button>
+
+    <div class="ai-widget hidden" id="ai-widget">
+        <div class="ai-header">
+            <span>ARIL AI Support</span>
+            <button onclick="toggleAI()" style="background:none; border:none; color:white; cursor:pointer;">✕</button>
+        </div>
+        <div class="ai-chat" id="ai-chat">
+            <div class="ai-msg ai-bot">Halo! Saya asisten AI ARIL STORE. Ada yang bisa dibantu?</div>
+        </div>
+        <div class="ai-input-area">
+            <input type="text" id="ai-input" placeholder="Ketik pesan..." onkeypress="handleAIEnter(event)">
+            <button onclick="sendAIMessage()">➔</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

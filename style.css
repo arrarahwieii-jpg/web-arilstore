@@ -1,0 +1,323 @@
+/* RESET & BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; user-select: none; }
+body { background-color: #000; overflow: hidden; color: #fff; }
+
+/* AUDIO UNLOCK OVERLAY */
+.audio-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050505; z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity 0.5s ease; }
+.audio-overlay.hidden { opacity: 0; pointer-events: none; }
+.audio-content { text-align: center; animation: pulse 2s infinite; }
+.audio-content h2 { font-size: 2rem; color: #4da6ff; text-shadow: 0 0 10px #4da6ff; margin-bottom: 10px; }
+
+/* PAGE STRUCTURE */
+.page { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; display: none; overflow: hidden; opacity: 0; transition: opacity 0.8s ease-in-out; z-index: 1; }
+.page.active { display: flex; flex-direction: column; opacity: 1; z-index: 2; }
+.bg-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); object-fit: cover; z-index: -1; }
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%); z-index: 0; }
+
+/* TOMBOL NAVIGASI */
+.btn-top-left { position: absolute; top: 30px; left: 30px; padding: 10px 20px; background: rgba(0,0,0,0.6); color: #fff; border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; z-index: 10; backdrop-filter: blur(5px); font-size: 0.9rem; transition: all 0.3s ease; cursor: pointer; display: flex; align-items: center; gap: 10px;}
+.btn-top-left:hover { background: rgba(255,255,255,0.3); border-color: #fff; }
+
+/* KERANJANG CUSTOM */
+.btn-cart { background: rgba(0, 0, 0, 0.7); border-color: #4da6ff; font-weight: bold; box-shadow: 0 0 15px rgba(77, 166, 255, 0.5); }
+.cart-icon-img { width: 30px; height: 30px; object-fit: contain; }
+
+.btn-nav { position: absolute; padding: 10px 20px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #fff; border-radius: 5px; z-index: 3; backdrop-filter: blur(5px); transition: opacity 0.8s ease-in-out, background 0.3s; cursor: pointer; }
+.btn-nav:hover { background: rgba(255,255,255,0.3); }
+.btn-next-splash { bottom: 30px; right: 30px; opacity: 1; }
+.btn-next-splash.hidden { opacity: 0; pointer-events: none; }
+
+/* SPLASH SCREEN */
+.content-splash { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; }
+.title-splash { font-size: 3rem; text-align: center; text-shadow: 0 0 20px #4da6ff, 0 0 40px #4da6ff; margin-bottom: 30px; opacity: 1; transform: translateY(0); transition: opacity 1s ease-in-out, transform 1s ease-in-out; }
+.title-splash.hidden { opacity: 0; transform: translateY(20px); }
+.loading-container { display: flex; align-items: center; gap: 15px; font-family: monospace; font-size: 1.2rem; }
+.loading-bar-bg { width: 200px; height: 6px; background: rgba(255,255,255,0.2); border-radius: 3px; overflow: hidden; }
+.loading-bar-fill { width: 0%; height: 100%; background: #fff; transition: width 0.1s linear; box-shadow: 0 0 10px #fff; }
+
+/* HOMEPAGE */
+.content-home { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 40px; }
+.logo-aril { font-size: 5rem; font-weight: 900; letter-spacing: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+.logo-store { color: #4da6ff; text-shadow: 0 0 20px #4da6ff, 0 0 40px #4da6ff, 0 0 60px #4da6ff; }
+.btn-main { padding: 15px 40px; font-size: 1.2rem; background: transparent; color: #fff; border: 2px solid #4da6ff; border-radius: 5px; text-shadow: 0 0 10px #4da6ff; box-shadow: 0 0 15px rgba(77, 166, 255, 0.3); transition: all 0.3s ease; cursor: pointer; font-weight: bold; }
+.btn-main:hover { background: rgba(77, 166, 255, 0.2); box-shadow: 0 0 30px rgba(77, 166, 255, 0.6); }
+.btn-admin-login { border-color: #ff4d4d; text-shadow: 0 0 10px #ff4d4d; box-shadow: 0 0 15px rgba(255, 77, 77, 0.3); }
+.btn-admin-login:hover { background: rgba(255, 77, 77, 0.2); box-shadow: 0 0 30px rgba(255, 77, 77, 0.6); }
+
+/* LOGIN PANEL */
+.login-panel { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.9); padding: 30px; border-radius: 10px; border: 1px solid #4da6ff; z-index: 9999; display: flex; flex-direction: column; gap: 15px; backdrop-filter: blur(10px); width: 90%; max-width: 350px; text-align: center; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
+.login-panel.hidden { display: none !important; }
+.btn-oauth { padding: 12px; border-radius: 5px; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 10px; border: none; cursor: pointer; font-weight: bold; transition: opacity 0.2s; }
+.btn-oauth:hover { opacity: 0.8; }
+.btn-google { background: #fff; color: #333; border: 1px solid #ddd; }
+.btn-facebook { background: #1877F2; color: white; }
+.btn-apple { background: #000; color: white; border: 1px solid #333; }
+.btn-guest { background: transparent; color: #aaa; font-size: 0.9rem; text-decoration: underline; border: none; margin-top: 10px; }
+
+/* ================= HALAMAN 3: KATALOG TENGAH ================= */
+.catalog-header-centered {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    z-index: 5;
+}
+
+.logo-nav-center { font-size: 2rem; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+.logo-nav-center span { color: #4da6ff; text-shadow: 0 0 20px #4da6ff; }
+
+.category-nav-center { display: flex; gap: 20px; }
+.cat-btn { background: transparent; color: #aaa; font-size: 0.9rem; padding: 5px; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.3s; }
+.cat-btn.active, .cat-btn:hover { color: #fff; border-bottom: 2px solid #4da6ff; }
+
+.user-nav-center { display: flex; align-items: center; gap: 15px; font-size: 0.9rem; margin-top: 10px; }
+.badge { background: #ff4d4d; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; }
+.badge.hidden { display: none; }
+.btn-logout { background: rgba(255,255,255,0.1); color: #fff; padding: 5px 10px; border-radius: 3px; border: none; cursor: pointer; }
+
+/* GRID KATALOG (2 KOLOM RAPI) */
+.catalog-main-centered {
+    position: absolute;
+    top: 65%; /* Mulai di bawah menu tengah */
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    z-index: 4;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.product-card { background: rgba(20, 20, 20, 0.85); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; cursor: pointer; backdrop-filter: blur(5px); }
+.product-card:hover { transform: translateY(-5px); border-color: #4da6ff; }
+.product-image { width: 100%; height: 120px; background: #111; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+.product-info { padding: 12px; }
+.product-title { font-size: 0.95rem; margin-bottom: 5px; }
+.product-price { color: #4da6ff; font-weight: bold; font-size: 0.9rem; }
+
+/* ================= HALAMAN POSTER (DIAMOND & BUKU) ================= */
+.poster-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; background-repeat: no-repeat; z-index: 0; }
+.interactive-layer { position: relative; z-index: 5; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.game-logo-grid-poster { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2%; width: 80%; max-width: 400px; margin-top: 10%; margin-bottom: 15%; }
+.click-zone { aspect-ratio: 1 / 1; background: rgba(255, 255, 255, 0); cursor: pointer; border-radius: 10px; transition: background 0.2s; border: 2px solid transparent; }
+.click-zone:hover { background: rgba(77, 166, 255, 0.3); border-color: #4da6ff; }
+.btn-poster-action { padding: 15px 40px; font-size: 1.2rem; background: #4da6ff; color: #fff; border: none; border-radius: 30px; cursor: pointer; font-weight: bold; box-shadow: 0 0 20px rgba(77, 166, 255, 0.8); transition: transform 0.2s, box-shadow 0.2s; margin-top: 10%; }
+.btn-poster-action:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(77, 166, 255, 1); }
+
+/* MODALS */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 10000; backdrop-filter: blur(5px); }
+.modal.hidden { display: none !important; }
+.modal-content { background: #111; padding: 30px; border-radius: 10px; width: 90%; max-width: 400px; border: 1px solid #333; max-height: 90vh; overflow-y: auto; }
+.payment-group { margin-bottom: 20px; }
+.payment-group h4 { margin-bottom: 10px; color: #aaa; font-size: 0.9rem; text-transform: uppercase; }
+.payment-group button { width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 5px; font-weight: normal; border: none; cursor: pointer; }
+.btn-qris { background: #4da6ff; color: #fff; font-weight: bold; }
+.btn-bank { background: #005c2e; color: #fff; }
+.btn-close-modal { background: #ff4d4d; color: #fff; width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: none; cursor: pointer; }
+
+/* SUPPORT */
+.support-section { margin-top: 25px; padding-top: 15px; border-top: 1px solid #333; text-align: center; }
+.support-section p { color: #aaa; font-size: 0.9rem; margin-bottom: 10px; font-style: italic; }
+.support-btns { display: flex; gap: 10px; justify-content: center; }
+.btn-support { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 0.85rem; transition: transform 0.2s, opacity 0.2s; width: 50%; }
+.btn-support:hover { transform: scale(1.05); opacity: 0.9; }
+.btn-wa { background: #25D366; color: white; }
+.btn-tg { background: #0088cc; color: white; }
+
+/* ADMIN PANEL */
+.admin-panel { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #111; border: 1px solid #4da6ff; border-radius: 10px; padding: 20px; width: 90%; max-width: 400px; z-index: 200; box-shadow: 0 0 30px rgba(77, 166, 255, 0.2); }
+.admin-list { list-style: none; margin: 15px 0; max-height: 200px; overflow-y: auto; }
+.admin-list li { padding: 10px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+.btn-close-admin { width: 100%; padding: 10px; background: #333; color: #fff; border-radius: 5px; border: none; cursor: pointer; }
+
+/* ================= AI WIDGET (KANAN ATAS) ================= */
+.ai-fab-top { position: fixed; top: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: transparent; border: none; cursor: pointer; z-index: 9998; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
+.ai-fab-top img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 15px #4da6ff); }
+.ai-fab-top:hover { transform: scale(1.1); }
+.ai-widget { position: fixed; top: 100px; right: 30px; width: 320px; height: 400px; background: #111; border: 1px solid #4da6ff; border-radius: 10px; display: flex; flex-direction: column; z-index: 9999; box-shadow: 0 0 30px rgba(0,0,0,0.8); overflow: hidden; }
+.ai-widget.hidden { display: none !important; }
+.ai-header { background: #4da6ff; padding: 12px 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+.ai-chat { flex-grow: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.ai-msg { padding: 10px; border-radius: 8px; font-size: 0.85rem; max-width: 85%; line-height: 1.4; }
+.ai-bot { background: #222; align-self: flex-start; border-bottom-left-radius: 0; }
+.ai-user { background: #4da6ff; color: white; align-self: flex-end; border-bottom-right-radius: 0; }
+.ai-input-area { display: flex; padding: 10px; background: #1a1a1a; border-top: 1px solid #333; }
+.ai-input-area input { flex-grow: 1; background: #000; border: 1px solid #333; color: white; padding: 10px; border-radius: 5px; outline: none; }
+.ai-input-area button { background: #4da6ff; color: white; border: none; padding: 0 15px; margin-left: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+.hidden { display: none !important; }
+
+@media (max-width: 600px) {
+    .logo-aril { font-size: 3rem; }
+    .catalog-header-centered { top: 45%; }
+    .catalog-main-centered { top: 60%; }
+    .ai-widget { width: 90%; right: 5%; top: 90px; }
+    .game-logo-grid-poster { width: 90%; gap: 1%; margin-top: 15%; }
+}
+
+/* TAMBAHKAN CSS INI DI BAGIAN PALING BAWAH FILE STYLE.CSS LO */
+/* (BIARKAN CSS SEBELUMNYA TETAP ADA) */
+
+/* MODAL KERANJANG CUSTOM POSTER */
+.cart-modal-content {
+    position: relative;
+    width: 95%;
+    max-width: 450px;
+    height: 85vh; /* Biar full tinggi layar HP */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    border: 1px solid #4da6ff;
+    box-shadow: 0 0 40px rgba(77, 166, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Tombol di bawah */
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Overlay gelap tipis di bawah poster biar tombol kebaca */
+.cart-modal-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    z-index: 1;
+}
+
+/* Container Tombol */
+.cart-actions {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Style Tombol Top Up & Buku */
+.btn-cart-action {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+}
+
+.btn-cart-action:hover {
+    transform: scale(1.03);
+}
+
+.btn-diamond {
+    background: linear-gradient(90deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
+    color: white;
+    box-shadow: 0 0 15px #4da6ff;
+    border: 1px solid #7db9e8;
+}
+
+.btn-book {
+    background: linear-gradient(90deg, #005c2e 0%, #008744 50%, #00a352 51%, #4dff9b 100%);
+    color: white;
+    box-shadow: 0 0 15px #00a352;
+    border: 1px solid #4dff9b;
+}
+
+/* Tombol Close di Pojok Kanan Atas Poster */
+.btn-close-cart {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(255,0,0,0.5);
+}
+.btn-close-cart:hover {
+    background: #ff4d4d;
+}
+
+/* CSS UNTUK TOMBOL KONTAK DI HALAMAN 3 */
+.contact-fixed {
+    position: absolute;
+    top: 140px; /* Di bawah tombol keranjang */
+    left: 30px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.contact-fixed p {
+    font-size: 0.8rem;
+    color: #ccc;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.btn-contact-fixed {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: white;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn-contact-fixed:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.btn-wa-fixed { background: #25D366; }
+.btn-tg-fixed { background: #0088cc; }
+
+/* Penyesuaian Layar HP */
+@media (max-width: 600px) {
+    .contact-fixed {
+        top: 130px;
+        left: 15px;
+        padding: 8px;
+    }
+    .btn-contact-fixed {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+    }
+}
