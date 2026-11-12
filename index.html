@@ -1,226 +1,581 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARIL STORE</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEXUS//AETHER — Cyber-Fantasy Portfolio</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-role="none">
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
 
-    <!-- AUDIO UNLOCK OVERLAY -->
-    <div id="audio-unlock" class="audio-overlay" onclick="unlockAudio()">
-        <div class="audio-content">
-            <h2>Klik Untuk Masuk</h2>
-            <p>Mengaktifkan visual & audio</p>
-        </div>
+<!-- ============================================================
+     LOGIN SCREEN
+     ============================================================ -->
+<section id="screenLogin" class="screen">
+  <div class="login-card">
+    <div class="brand"><span class="dot"></span>NEXUS//AETHER</div>
+    <div class="login-sub">CYBER-FANTASY PORTFOLIO</div>
+
+    <div class="providers">
+      <button class="prov" data-provider="Google">
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9c-.3 1.4-1 2.5-2.2 3.3v2.7h3.5c2-1.9 3.3-4.7 3.3-8z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.8l-3.5-2.7c-1 .7-2.2 1-3.7 1-2.8 0-5.2-1.9-6.1-4.5H2.3v2.8C4.1 20.5 7.8 23 12 23z"/><path fill="#FBBC05" d="M5.9 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.2H2.3C1.5 8.7 1 10.3 1 12s.5 3.3 1.3 4.8L5.9 14z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .5 4.1 1.6l3.1-3.1C17.4 2 14.9 1 12 1 7.8 1 4.1 3.5 2.3 7.2L5.9 10C6.8 7.4 9.2 5.4 12 5.4z"/></svg></span>
+        Login dengan Akun Google <span class="arrow">›</span>
+      </button>
+      <button class="prov" data-provider="Facebook">
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.5 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></span>
+        Login dengan Akun Facebook <span class="arrow">›</span>
+      </button>
+      <button class="prov" data-provider="Apple">
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="#e8eefc"><path d="M16.4 12.7c0-2.6 2.1-3.9 2.2-4-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9s-2-.9-3.4-.9c-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.3 2.5 1.3-.1 1.8-.8 3.4-.8s2 .8 3.4.8 2.3-1.2 3.2-2.5c1-1.4 1.4-2.8 1.4-2.9-.1 0-2.9-1.1-3-4.3zM14 4.6c.7-.9 1.2-2.1 1.1-3.3-1.1 0-2.4.7-3.2 1.6-.7.8-1.3 2-1.1 3.2 1.2.1 2.4-.6 3.2-1.5z"/></svg></span>
+        Login dengan Akun Apple / iOS <span class="arrow">›</span>
+      </button>
+      <button class="prov" data-provider="Twitter/X">
+        <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="#e8eefc"><path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1 2h6.4l4.5 5.9L18.9 2zm-1.1 18h1.7L7.3 3.8H5.5L17.8 20z"/></svg></span>
+        Login dengan Akun Twitter / X <span class="arrow">›</span>
+      </button>
+      <button class="prov" data-provider="Email">
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4da3ff" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="m2 7 10 7 10-7"/></svg></span>
+        Login dengan Akun Email <span class="arrow">›</span>
+      </button>
     </div>
 
-    <!-- ================= HALAMAN 1: SPLASH ================= -->
-    <div id="page-splash" class="page active">
-        <video muted autoplay loop playsinline class="bg-video" id="vid-splash">
-            <source src="ssstik.io_1794179351725.mp4" type="video/mp4">
-        </video>
-        <div class="overlay"></div>
-        <button class="btn-top-left hidden" id="btn-exit" onclick="exitWeb()">✕ Keluar</button>
-        <div class="content-splash">
-            <h1 class="title-splash hidden" id="title-splash">Welcome To My<br>Portfolio Website</h1>
-            <div class="loading-container" id="loading-container">
-                <div class="loading-bar-bg"><div class="loading-bar-fill" id="loading-fill"></div></div>
-                <span class="loading-text" id="loading-text">Loading 0%</span>
-            </div>
-        </div>
-        <button class="btn-nav btn-next-splash hidden" id="btn-next-splash" onclick="nextPage('page-home')">Selanjutnya <span class="arrow">➔</span></button>
+    <div class="login-foot">
+      Login otomatis membuat akun Member baru.<br>
+      <b style="color:#ffcf5c">Kode rahasia chat Global minta ke Admin.</b>
     </div>
+  </div>
+</section>
 
-    <!-- ================= HALAMAN 2: HOMEPAGE ================= -->
-    <div id="page-home" class="page">
-        <video loop playsinline class="bg-video" id="vid-home">
-            <source src="ssstik.io_1794179499112.mp4" type="video/mp4">
-        </video>
-        <div class="overlay"></div>
-        <button class="btn-top-left" onclick="nextPage('page-splash')">← Kembali</button>
-
-        <div class="content-home">
-            <h1 class="logo-aril">ARIL <span class="logo-store">STORE</span></h1>
-            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-                <button class="btn-main" onclick="checkAuthAndGoCatalog()">LIHAT KATALOG</button>
-                <button class="btn-main btn-admin-login" onclick="openAdminLogin()">ADMIN LOGIN</button>
-            </div>
-        </div>
-        
-        <!-- MEMBER LOGIN PANEL -->
-        <div id="login-panel" class="login-panel hidden">
-            <h3>Member Login</h3>
-            <p style="font-size:0.8rem; color:#aaa; margin-bottom: 15px;">Silakan login untuk membeli produk.</p>
-            <button class="btn-oauth btn-google" onclick="loginSimulasi('Google')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="G" width="18"> Login with Google
-            </button>
-            <button class="btn-oauth btn-facebook" onclick="loginSimulasi('Facebook')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="F" width="18"> Login with Facebook
-            </button>
-            <button class="btn-oauth btn-apple" onclick="loginSimulasi('Apple')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="A" width="18" style="filter: invert(1);"> Login with Apple
-            </button>
-            <button class="btn-oauth btn-guest" onclick="loginAsGuest()">Masuk Sebagai Tamu</button>
-        </div>
+<!-- ============================================================
+     ADMIN LOGIN
+     ============================================================ -->
+<section id="screenAdmin" class="screen">
+  <form class="login-card admin-card" id="adminForm" autocomplete="off">
+    <div class="admin-tag">RESTRICTED · CORE ACCESS</div>
+    <h2>ADMIN AUTHENTICATION</h2>
+    <label class="field"><span>EMAIL</span>
+      <input type="email" id="adminEmail" placeholder="admin@nexus.dev" required>
+    </label>
+    <label class="field"><span>PASSWORD</span>
+      <input type="password" id="adminPass" placeholder="••••••••••••" required>
+    </label>
+    <button type="submit" class="btn btn-gold">AUTHENTICATE</button>
+    <div class="demo-hint">
+      <b>AKUN DEMO</b><br>
+      email: <code>admin@nexus.dev</code><br>
+      pass&nbsp;: <code>Jaccksallas#2025</code>
     </div>
+    <a href="#" class="back-link" id="adminBack">← kembali ke halaman login</a>
+  </form>
+</section>
 
-    <!-- GANTI BAGIAN HALAMAN 3 DI index.html DENGAN INI -->
-    <div id="page-catalog" class="page">
-        <video loop playsinline class="bg-video" id="vid-catalog">
-            <source src="ssstik.io_1794182416878.mp4" type="video/mp4">
-        </video>
-        <div class="overlay"></div>
-        
-        <!-- Tombol Kembali & Keranjang -->
-        <button class="btn-top-left" style="top: 15px;" onclick="nextPage('page-home')">← Kembali</button>
-        <button class="btn-top-left btn-cart" style="top: 75px;" onclick="openCartPanel()">
-            <img src="1001197320-removebg-preview.png" alt="Keranjang" class="cart-icon-img">
-            Keranjang
+<!-- ============================================================
+     APP
+     ============================================================ -->
+<section id="screenApp" class="screen">
+  <div class="chat-backdrop" id="chatBackdrop"></div>
+
+  <!-- CHAT — SISI KIRI (WA STYLE) -->
+  <aside class="chat-panel" id="chatPanel">
+    <div class="chat-head" id="chatHead">
+      <div class="chat-head-left">
+        <div class="wa-avatar-group">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="m3 7 9 5 9-5M12 12v10"/>
+          </svg>
+        </div>
+        <div class="chat-head-info">
+          <h2>Global Chat</h2>
+          <span class="chat-online" id="chatOnline">Online</span>
+        </div>
+      </div>
+      <div class="chat-head-actions">
+        <button id="btnIncognito" class="head-action-btn" style="display:none" title="Mode Menyamar">🕵️</button>
+        <button id="btnLockChat" class="head-action-btn" style="display:none" title="Kunci Chat">🔓</button>
+        <button class="chat-close-btn" id="chatCloseBtn" title="Tutup Chat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
         </button>
+      </div>
+    </div>
+    
+    <div class="chat-body" id="chatBody"></div>
 
-        <!-- KONTAK WA & TG MELAYANG DI KIRI (Area Lingkaran Hijau) -->
-        <div class="contact-fixed">
-            <p>Butuh Bantuan?</p>
-            <a href="https://wa.me/6285242725765" target="_blank" class="btn-contact-fixed btn-wa-fixed">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" width="20"> WhatsApp
-            </a>
-            <a href="https://t.me/usernamekamu" target="_blank" class="btn-contact-fixed btn-tg-fixed">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="TG" width="20"> Telegram
-            </a>
-        </div>
-
-        <!-- Header Tengah -->
-        <div class="catalog-header-centered">
-            <div class="logo-nav-center">ARIL <span>STORE</span></div>
-            <nav class="category-nav-center">
-                <button class="cat-btn active" onclick="filterCategory('all', this)">All Produk</button>
-                <button class="cat-btn" onclick="filterCategory('ff', this)">Free Fire</button>
-                <button class="cat-btn" onclick="filterCategory('8ball', this)">8Ball Pool</button>
-            </nav>
-            <div class="user-nav-center">
-                <span id="user-display-name">Guest</span>
-                <span id="user-badge" class="badge hidden">ADMIN</span>
-                <button class="btn-logout" onclick="logout()">Logout</button>
-            </div>
-        </div>
-
-        <main class="catalog-main-centered">
-            <div id="product-grid" class="product-grid"></div>
-        </main>
+    <div class="chat-gate" id="chatGate">
+      <div class="gate-title" id="gateTitle">⚠ CHAT GLOBAL TERKUNCI</div>
+      <div class="gate-message" id="gateMessage">Minta code ke Admin untuk buka chat Global!</div>
+      <div class="gate-timer" id="gateTimer">03:00:00</div>
+      <p class="gate-note" id="gateNote">
+        Kode Rahasia diberikan langsung oleh Admin. Tanpa kode, tunggu 3 jam.
+        Premium membuka instan.
+      </p>
+      <div class="gate-secret" id="gateSecretRow">
+        <input type="text" id="secretInput" placeholder="KODE RAHASIA DARI ADMIN" autocomplete="off" spellcheck="false">
+        <button id="secretBtn">BUKA</button>
+      </div>
+      <div class="gate-contact" id="gateContact">
+        <a class="contact-btn wa" href="https://api.whatsapp.com/send/?phone=6285242725765&text=Halo%20Admin%2C%20saya%20ingin%20minta%20Kode%20Rahasia%20untuk%20chat%20Global%20di%20NEXUS%2F%2FAETHER&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.2-.7.9-.9 1.1-.2.2-.3.2-.6.1s-1.2-.4-2.3-1.4c-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.4 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+          WHATSAPP ADMIN
+        </a>
+        <a class="contact-btn tg" href="https://t.me/aril_neverlow311028" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          TELEGRAM ADMIN
+        </a>
+      </div>
     </div>
 
-    <!-- ================= HALAMAN 4: DIAMOND ALL GAME ================= -->
-    <div id="page-diamond" class="page">
-        <div class="overlay"></div>
-        <button class="btn-top-left" onclick="openCartPanel()" style="z-index: 10;">← Kembali</button>
-        <div class="poster-bg" style="background-image: url('file_00000000bf408211aab2db8eded566a9.png');"></div>
-        <div class="interactive-layer">
-            <div class="game-logo-grid-poster">
-                <div class="click-zone" onclick="selectGame('Mobile Legends')"></div>
-                <div class="click-zone" onclick="selectGame('Free Fire')"></div>
-                <div class="click-zone" onclick="selectGame('PUBG Mobile')"></div>
-                <div class="click-zone" onclick="selectGame('Genshin Impact')"></div>
-                <div class="click-zone" onclick="selectGame('Honor of Kings')"></div>
-                <div class="click-zone" onclick="selectGame('Roblox')"></div>
-                <div class="click-zone" onclick="selectGame('Call of Duty Mobile')"></div>
-                <div class="click-zone" onclick="selectGame('eFootball')"></div>
-                <div class="click-zone" onclick="selectGame('Honkai Star Rail')"></div>
-                <div class="click-zone" onclick="selectGame('Valorant')"></div>
-                <div class="click-zone" onclick="selectGame('DANA')"></div>
-                <div class="click-zone" onclick="selectGame('Game Lainnya')"></div>
-            </div>
-            <button class="btn-poster-action" onclick="goToDiamondWeb()">🛒 Top Up Sekarang!</button>
+    <div class="reply-preview" id="replyPreview" style="display:none">
+      <div class="reply-content">
+        <div class="reply-name" id="replyName">Name</div>
+        <div class="reply-text" id="replyText">Quoted text...</div>
+      </div>
+      <button class="reply-close" id="replyClose">✕</button>
+    </div>
+
+    <form class="chat-form" id="chatForm" autocomplete="off">
+      <div class="wa-input-wrap">
+        <span class="wa-emoji">😀</span>
+        <input type="text" id="chatInput" placeholder="Ketik pesan" maxlength="400">
+        
+        <div class="wa-actions-left" id="waActionsTyping" style="display:none">
+          <span class="wa-attach" id="btnAttachTyping">📎</span>
         </div>
-    </div>
-
-    <!-- ================= HALAMAN 5: ARIL BOOKSTORE ================= -->
-    <div id="page-books" class="page">
-        <div class="overlay"></div>
-        <button class="btn-top-left" onclick="openCartPanel()" style="z-index: 10;">← Kembali</button>
-        <div class="poster-bg" style="background-image: url('file_00000000e6e48211899be42716c3539b.png');"></div>
-        <div class="interactive-layer" style="justify-content: flex-end; padding-bottom: 10%;">
-            <button class="btn-poster-action" onclick="goToBookWeb()">🛒 Pesan Sekarang!</button>
+        <div class="wa-actions-right" id="waActionsEmpty">
+          <span class="wa-attach" id="btnAttach">📎</span>
+          <span class="wa-camera" id="btnCamera">📷</span>
+          <span class="wa-video" id="btnVideo" style="cursor:pointer;font-size:18px;margin-left:8px;">🎥</span>
         </div>
-    </div>
+      </div>
+      
+      <button type="submit" class="wa-send-btn" id="btnSend" style="display:none" aria-label="Kirim">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+      
+      <button type="button" class="wa-mic-btn" id="btnMic" aria-label="Rekam Suara">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4m-4 0h8"/></svg>
+      </button>
+    </form>
+  </aside>
 
-    <!-- ================= MODAL KERANJANG (POSTER BARU) ================= -->
-    <div id="cart-modal" class="modal hidden">
-        <div class="cart-modal-content" style="background-image: url('file_00000000c6fc8211b6777033ce387706.png');">
-            <!-- Overlay transparan di atas poster -->
-            <div class="cart-modal-overlay"></div>
-            
-            <!-- Tombol Pilihan di Bawah -->
-            <div class="cart-actions">
-                <button class="btn-cart-action btn-diamond" onclick="closeCartModal(); nextPage('page-diamond');">Top Up Diamond</button>
-                <button class="btn-cart-action btn-book" onclick="closeCartModal(); nextPage('page-books');">Beli Buku</button>
-            </div>
-            
-            <!-- Tombol Close Silang -->
-            <button class="btn-close-cart" onclick="closeCartModal()">✕</button>
-        </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="side-brand">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="m3 7 9 5 9-5M12 12v10"/>
+      </svg>
     </div>
-
-    <!-- ================= MODAL PEMBAYARAN ================= -->
-    <div id="payment-modal" class="modal hidden">
-        <div class="modal-content">
-            <h2 id="modal-title">Pilih Metode Pembayaran</h2>
-            <div class="payment-methods">
-                <div class="payment-group">
-                    <h4>QRIS Otomatis</h4>
-                    <button class="btn-qris" onclick="startPayment('QRIS')">QRIS (GoPay)</button>
-                </div>
-                <div class="payment-group">
-                    <h4>M-Banking</h4>
-                    <button class="btn-bank" onclick="startPayment('BSI')">BSI (Bank Syariah Indonesia)</button>
-                </div>
-            </div>
-            <div class="support-section">
-                <p>Ada masalah Butuh Bantuan!</p>
-                <div class="support-btns">
-                    <a href="https://wa.me/6285242725765" target="_blank" class="btn-contact-fixed btn-wa-fixed">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" width="20"> WhatsApp
-</a>
-</a>
-                    <a href="https://t.me/usernamekamu" target="_blank" class="btn-support btn-tg">Telegram</a>
-                </div>
-            </div>
-            <button class="btn-close-modal" onclick="closeModal()">Tutup</button>
-        </div>
-    </div>
-
-    <!-- ADMIN PANEL -->
-    <div class="admin-panel hidden" id="admin-panel">
-        <h3>Admin Control Panel</h3>
-        <ul id="admin-user-list" class="admin-list">
-            <li><span>Status Server:</span> <span style="color:#00ff00;">Online</span></li>
-            <li><span>Total Member:</span> <span>1,240</span></li>
-            <li><span>Pendapatan Hari Ini:</span> <span style="color:#4da6ff;">Rp 3.500.000</span></li>
-        </ul>
-        <button class="btn-close-admin" onclick="toggleAdminPanel()">Tutup</button>
-    </div>
-
-    <!-- ================= AI WIDGET ================= -->
-    <button class="ai-fab-top" id="ai-fab" onclick="toggleAI()">
-        <img src="file_0000000032808211a1c3118995e35fc7.png" alt="AI">
+    <button class="side-btn on" data-tip="PROFIL" data-nav="profile">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
     </button>
+    <button class="side-btn" data-tip="PORTFOLIO" data-nav="portfolio">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V4h8v3"/></svg>
+    </button>
+    <button class="side-btn" data-tip="CHAT" data-nav="chat">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 12a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5Z"/></svg>
+    </button>
+    <button class="side-btn" data-tip="UNDUHAN" data-nav="download">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
+    </button>
+    <button class="side-btn" data-tip="PENGATURAN" data-nav="settings">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 9 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 9a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1Z"/></svg>
+    </button>
+    <div class="side-spacer"></div>
+    <button class="side-btn" data-tip="KELUAR" id="btnLogout">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 21H4V3h5M16 17l5-5-5-5M21 12H9"/></svg>
+    </button>
+  </aside>
 
-    <div class="ai-widget hidden" id="ai-widget">
-        <div class="ai-header">
-            <span>ARIL AI Support</span>
-            <button onclick="toggleAI()" style="background:none; border:none; color:white; cursor:pointer;">✕</button>
-        </div>
-        <div class="ai-chat" id="ai-chat">
-            <div class="ai-msg ai-bot">Halo! Saya asisten AI ARIL STORE. Ada yang bisa dibantu?</div>
-        </div>
-        <div class="ai-input-area">
-            <input type="text" id="ai-input" placeholder="Ketik pesan..." onkeypress="handleAIEnter(event)">
-            <button onclick="sendAIMessage()">➔</button>
-        </div>
+  <!-- PROFILE MAIN -->
+  <main class="profile-main">
+    <div class="banner-wrap">
+      <div class="banner" id="bannerEl"></div>
+      <button class="banner-edit" id="btnBanner">GANTI BANNER</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="profile-body">
+      <div class="avatar-stage">
+        <div class="aura"></div>
+        <svg class="wings" viewBox="0 0 480 180" aria-hidden="true">
+          <defs>
+            <linearGradient id="wg" x1="1" y1="0.5" x2="0" y2="0.5">
+              <stop offset="0"/><stop offset="1"/>
+            </linearGradient>
+          </defs>
+          <g class="wing-g">
+            <g class="wing-l">
+              <path d="M238 132 L96 144 L152 110 Z"/>
+              <path d="M238 114 L68 116 L146 86 Z"/>
+              <path d="M238 96  L58 84  L142 62 Z"/>
+              <path d="M238 78  L78 50  L152 36 Z"/>
+              <path d="M238 58  L112 20 L176 22 Z"/>
+            </g>
+            <g class="wing-r" transform="translate(480,0) scale(-1,1)">
+              <path d="M238 132 L96 144 L152 110 Z"/>
+              <path d="M238 114 L68 116 L146 86 Z"/>
+              <path d="M238 96  L58 84  L142 62 Z"/>
+              <path d="M238 78  L78 50  L152 36 Z"/>
+              <path d="M238 58  L112 20 L176 22 Z"/>
+            </g>
+          </g>
+        </svg>
+        <svg class="crown" viewBox="0 0 100 62" aria-hidden="true">
+          <path d="M8 54 L18 14 L34 34 L50 4 L66 34 L82 14 L92 54 Z"/>
+          <circle cx="50" cy="2" r="3"/>
+        </svg>
+        <div class="frame-ring"><img id="avatarImg" alt="Foto profil"></div>
+        <button class="avatar-edit" id="btnAvatar" title="Ganti foto profil">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 20h4L20 8l-4-4L4 16v4Z"/></svg>
+        </button>
+      </div>
+
+      <div class="name-box">
+        <h1 id="profileName">—</h1>
+        <button class="name-edit" id="btnName" title="Ubah nama tampilan">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h4L20 8l-4-4L4 16v4Z"/></svg>
+        </button>
+      </div>
+
+      <p class="profile-tagline">ACCESS LEVEL <span class="hl" id="tagAccess">50%</span> · <span class="hl" id="tagProvider">—</span></p>
+
+      <div class="badge-row">
+        <div class="badge locked" title="Terkunci — hanya admin yang dapat mengubah">
+          <span class="badge-k">ROLE</span><span class="badge-v" id="bRole">—</span>
+        </div>
+        <div class="badge locked" title="Terkunci — hanya admin yang dapat mengubah">
+          <span class="badge-k">LEVEL</span><span class="badge-v" id="bLevel">—</span>
+        </div>
+        <div class="badge locked" title="Terkunci — hanya admin yang dapat mengubah">
+          <span class="badge-k">UID</span><span class="badge-v" id="bUid">—</span>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <div class="fcard">
+          <div class="fcard-in">
+            <div class="fcard-h">
+              <span>PROGRESS XP</span>
+              <span class="ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-9 12h7l-1 8 9-12h-7l1-8Z"/></svg></span>
+            </div>
+            <!-- Removed ratio text -->
+            <div class="xp-track" style="margin-top: auto; margin-bottom: 8px;"><div class="xp-fill" id="xpFill"></div></div>
+            <div class="fcard-h" style="margin-top:0"><span>LV <span id="xpLv">1</span></span><span id="xpPct">0%</span></div>
+          </div>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-in">
+            <div class="fcard-h">
+              <span>UPGRADE PREMIUM</span>
+              <span class="ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-7Z"/></svg></span>
+            </div>
+            <div class="fcard-v" id="premState">FREE</div>
+            <div class="fcard-h" style="margin-top:2px"><span id="premNote">Berbayar — hubungi Admin</span></div>
+            <button class="mini-btn gold" id="btnPremium">BELI PREMIUM</button>
+          </div>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-in">
+            <div class="fcard-h">
+              <span>MENU</span>
+              <span class="ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></span>
+            </div>
+            <div class="menu-links">
+              <button data-menu="discord">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16 16 0 0 0 15.4 4l-.2.4a13 13 0 0 1 3.5 1.7 12 12 0 0 0-10.3 0A13 13 0 0 1 8.8 4.4L8.6 4a16 16 0 0 0-3.9 1.3C2.2 9 .9 13 1.5 17a16 16 0 0 0 4.8 2.4l.6-1a10 10 0 0 1-1.6-.8l.4-.3a11 11 0 0 0 9.6 0l.4.3a10 10 0 0 1-1.6.8l.6 1A16 16 0 0 0 22.5 17c.7-4.6-1.2-8.6-3.2-11.7ZM8.5 14.7c-.9 0-1.7-.9-1.7-1.9s.8-1.9 1.7-1.9 1.7.9 1.7 1.9-.8 1.9-1.7 1.9Zm7 0c-.9 0-1.7-.9-1.7-1.9s.8-1.9 1.7-1.9 1.7.9 1.7 1.9-.8 1.9-1.7 1.9Z"/></svg>
+                DISCORD
+              </button>
+              <button data-menu="download">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg>
+                UNDUHAN
+              </button>
+              <button data-menu="settings">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg>
+                PENGATURAN
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>
+
+<!-- ============================================================
+     FLOATING AI WIDGET
+     ============================================================ -->
+<div class="ai-widget" id="aiWidget">
+  <div class="ai-panel" id="aiPanel">
+    <div class="ai-head">
+      <span>NEXUS AI</span>
+      <button class="close" id="aiClose">✕</button>
+    </div>
+    <div class="ai-body" id="aiBody">
+      <div class="ai-msg bot">Sistem aktif. Tanya soal premium, kode rahasia, atau akses role.</div>
+    </div>
+    <form class="ai-form" id="aiForm" autocomplete="off">
+      <input type="text" id="aiInput" placeholder="Tanya sesuatu…">
+      <button type="submit">➤</button>
+    </form>
+  </div>
+  <div class="ai-ball" id="aiBall" title="NEXUS AI — geser bebas">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+      <rect x="4" y="7" width="16" height="12" rx="3"/>
+      <circle cx="9" cy="13" r="1.6" fill="currentColor"/>
+      <circle cx="15" cy="13" r="1.6" fill="currentColor"/>
+      <path d="M12 7V3M8 3h8"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ============================================================
+     HELP WIDGET
+     ============================================================ -->
+<div class="help-widget" id="helpWidget">
+  <div class="help-panel" id="helpPanel">
+    <div class="help-head">BUTUH BANTUAN?</div>
+    <p class="help-sub">Hubungi Admin langsung untuk kode rahasia, premium, atau masalah akun.</p>
+
+    <a class="help-link wa" href="https://api.whatsapp.com/send/?phone=6285242725765&text=Halo%20Admin%2C%20saya%20butuh%20bantuan%20di%20NEXUS%2F%2FAETHER&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" rel="noopener">
+      <span class="help-ic">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.2-.7.9-.9 1.1-.2.2-.3.2-.6.1s-1.2-.4-2.3-1.4c-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.4 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+      </span>
+      <span class="help-txt">
+        <b>WhatsApp Admin</b>
+        <small>chat langsung · respon cepat</small>
+      </span>
+      <span class="help-arrow">›</span>
+    </a>
+
+    <a class="help-link tg" href="https://t.me/aril_neverlow311028" target="_blank" rel="noopener">
+      <span class="help-ic">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </span>
+      <span class="help-txt">
+        <b>Telegram Admin</b>
+        <small>@aril_neverlow311028</small>
+      </span>
+      <span class="help-arrow">›</span>
+    </a>
+
+    <div class="help-foot">Admin online 09:00 – 22:00 WIB</div>
+  </div>
+
+  <button class="help-trigger" id="helpTrigger">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r=".5" fill="currentColor"/></svg>
+    <span>Butuh bantuan!</span>
+  </button>
+</div>
+
+<!-- ============================================================
+     MODALS
+     ============================================================ -->
+<div class="modal-backdrop" id="modalPrompt">
+  <div class="modal">
+    <h3 id="promptTitle">EDIT</h3>
+    <input type="text" id="promptInput">
+    <div class="modal-actions">
+      <button class="btn" id="promptCancel">BATAL</button>
+      <button class="btn" id="promptOk">SIMPAN</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modalAuthChoice">
+  <div class="modal">
+    <h3 id="authChoiceTitle">PILIH METODE</h3>
+    <p id="authChoiceDesc">Anda belum masuk. Buat akun baru atau masuk dengan akun yang sudah ada.</p>
+    <div class="modal-actions" style="flex-direction:column; gap:10px">
+      <button class="btn btn-gold" id="btnCreateNew">BUAT AKUN BARU</button>
+      <button class="btn" id="btnLoginExisting">SUDAH MEMPUNYAI AKUN</button>
+      <button class="btn" id="btnAuthCancel" style="border-color:transparent; margin-top:8px; color:var(--muted)">BATAL</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modalLoginExisting">
+  <form class="modal" id="loginExistingForm">
+    <h3>MASUK AKUN LAMA</h3>
+    <p>Masukkan Email, Username, atau UID yang terdaftar.</p>
+    <input type="text" id="loginExistingInput" placeholder="Email / Username / UID" required autocomplete="off">
+    <div class="modal-actions">
+      <button type="button" class="btn" id="loginExistingCancel">BATAL</button>
+      <button type="submit" class="btn btn-gold">MASUK</button>
+    </div>
+  </form>
+</div>
+
+<div class="modal-backdrop" id="modalEmail">
+  <form class="modal" id="emailForm">
+    <h3>BUAT AKUN EMAIL</h3>
+    <p>Masukkan email dan nama tampilan. Akun Member baru akan dibuat.</p>
+    <input type="email" id="emailInput" placeholder="nama@domain.com" required>
+    <input type="text" id="nameInput" placeholder="Nama tampilan" maxlength="24">
+    <div class="modal-actions">
+      <button type="button" class="btn" id="emailCancel">BATAL</button>
+      <button type="submit" class="btn">DAFTAR</button>
+    </div>
+  </form>
+</div>
+
+<div class="modal-backdrop" id="modalSecret">
+  <div class="modal">
+    <h3 id="secretTitle">KODE RAHASIA KAMU</h3>
+    <p id="secretDesc">Simpan kode ini. Masukkan di panel chat untuk membuka kunci.</p>
+    <div class="secret-display" id="secretValue">—</div>
+
+    <div class="secret-alt" id="secretAlt" style="display:none">
+      <a class="contact-btn wa" href="https://api.whatsapp.com/send/?phone=6285242725765&text=Halo%20Admin%2C%20saya%20ingin%20minta%20Kode%20Rahasia%20untuk%20chat%20Global&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" rel="noopener">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.2-.7.9-.9 1.1-.2.2-.3.2-.6.1s-1.2-.4-2.3-1.4c-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.4 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        WHATSAPP ADMIN
+      </a>
+      <a class="contact-btn tw" href="https://t.me/aril_neverlow311028" target="_blank" rel="noopener">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0z"/></svg>
+        TELEGRAM ADMIN
+      </a>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn" id="secretOk">MENGERTI</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEW: Premium Modal -->
+<div class="modal-backdrop" id="modalPremium">
+  <div class="modal premium-modal-content" id="premiumModalContent">
+    <!-- Content injected dynamically -->
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modalSettings">
+  <div class="modal">
+    <h3>PENGATURAN</h3>
+    <div class="settings-list">
+      <button data-set="name">UBAH NAMA TAMPILAN</button>
+      <button data-set="avatar">GANTI FOTO PROFIL</button>
+      <button data-set="banner">GANTI BANNER</button>
+      <button data-set="privacy" id="setPrivacy" style="display:none">SEMBUNYIKAN METODE LOGIN</button>
+      <button data-set="secret">LIHAT STATUS KODE RAHASIA</button>
+      <button data-set="core" class="core-btn" id="setCore" style="display:none">⚙ PENGATURAN SISTEM INTI</button>
+      <button data-set="logout">KELUAR AKUN</button>
+    </div>
+    <div class="modal-actions" style="margin-top:16px">
+      <button class="btn" id="settingsClose">TUTUP</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modalCore">
+  <div class="modal wide">
+    <h3>⚙ PENGATURAN SISTEM INTI — ADMIN ONLY</h3>
+    <p>Kelola role, level, EXP, UID, dan Kode Rahasia untuk semua user.</p>
+    <div id="coreList"></div>
+    <div class="modal-actions" style="margin-top:16px">
+      <button class="btn" id="coreReset">RESET SEMUA DATA</button>
+      <button class="btn btn-gold" id="coreClose">TUTUP</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modalProfile">
+  <div class="modal profile-view-modal" id="profileViewModal" data-role="member">
+    <button class="close-btn" id="profileViewClose">✕</button>
+    <div class="profile-view-content">
+       <div class="banner-wrap">
+          <div class="banner" id="pvBanner"></div>
+       </div>
+       <div class="avatar-stage">
+         <div class="aura"></div>
+         <svg class="wings" viewBox="0 0 480 180" aria-hidden="true">
+           <defs>
+             <linearGradient id="wg-pv" x1="1" y1="0.5" x2="0" y2="0.5">
+               <stop offset="0" style="stop-color:var(--wing-strong);stop-opacity:.85"/>
+               <stop offset="1" style="stop-color:var(--wing-soft);stop-opacity:.25"/>
+             </linearGradient>
+           </defs>
+           <g class="wing-g">
+             <g class="wing-l">
+               <path d="M238 132 L96 144 L152 110 Z" fill="url(#wg-pv)" stroke="var(--wing-line)"/>
+               <path d="M238 114 L68 116 L146 86 Z" fill="url(#wg-pv)" stroke="var(--wing-line)"/>
+               <path d="M238 96  L58 84  L142 62 Z" fill="url(#wg-pv)" stroke="var(--wing-line)"/>
+               <path d="M238 78  L78 50  L152 36 Z" fill="url(#wg-pv)" stroke="var(--wing-line)"/>
+               <path d="M238 58  L112 20 L176 22 Z" fill="url(#wg-pv)" stroke="var(--wing-line)"/>
+             </g>
+             <g class="wing-r" transform="translate(480,0) scale(-1,1)">
+               <path d="M238 132 L96 144 L152 110 Z" fill="url(#wg-pv)" stroke="var(--wing-line)"/>
+               <path d="M238 114 L68 116 L146 86 Z" fill="url(#wg-pv)" stroke="var(--wing-line)"/>
+               <path d="M238 96  L58 84  L142 62 Z" fill="url(#wg-pv)" stroke="var(--wing-line)"/>
+               <path d="M238 78  L78 50  L152 36 Z" fill="url(#wg-pv)" stroke="var(--wing-line)"/>
+               <path d="M238 58  L112 20 L176 22 Z" fill="url(#wg-pv)" stroke="var(--wing-line)"/>
+             </g>
+           </g>
+         </svg>
+         <svg class="crown" viewBox="0 0 100 62" aria-hidden="true">
+           <path d="M8 54 L18 14 L34 34 L50 4 L66 34 L82 14 L92 54 Z"/>
+           <circle cx="50" cy="2" r="3"/>
+         </svg>
+         <div class="frame-ring"><img id="pvAvatar" alt="Foto profil"></div>
+       </div>
+       <div class="name-box">
+         <h1 id="pvName">—</h1>
+       </div>
+       <p class="profile-tagline">ACCESS LEVEL <span class="hl" id="pvAccess">50%</span> <span id="pvDot" style="display:none; padding:0 4px; color:var(--muted);">·</span> <span class="hl" id="pvProvider" style="display:none">—</span></p>
+       <div class="badge-row">
+         <div class="badge locked"><span class="badge-k">ROLE</span><span class="badge-v" id="pvRole">—</span></div>
+         <div class="badge locked"><span class="badge-k">LEVEL</span><span class="badge-v" id="pvLevel">—</span></div>
+         <div class="badge locked"><span class="badge-k">UID</span><span class="badge-v" id="pvUid">—</span></div>
+       </div>
+    </div>
+  </div>
+</div>
+
+<div class="msg-context-menu" id="msgContextMenu">
+  <button id="ctxReply">Balas</button>
+  <button id="ctxDeleteMe">Hapus untuk Saya</button>
+  <button id="ctxDeleteAll" style="display:none; color:#ff8a8a;">Hapus untuk Semua</button>
+</div>
+
+<!-- Media Viewer Modal -->
+<div class="media-viewer-backdrop" id="mediaViewer">
+  <div class="media-viewer-content" id="mediaViewerContent">
+    <button class="media-close" id="mediaClose">✕</button>
+    <div id="mediaRenderTarget"></div>
+  </div>
+</div>
+
+<!-- NEW: Media Preview Modal -->
+<div class="media-preview-overlay" id="mediaPreviewModal">
+  <div class="preview-top-bar">
+    <button class="preview-back" id="previewBtnCancel">✕</button>
+  </div>
+  <div class="preview-content-area" id="previewContentArea"></div>
+  <div class="preview-bottom-bar">
+    <div class="preview-input-wrap">
+      <button class="preview-btn-add" id="previewBtnAdd">➕</button>
+      <input type="text" id="previewCaption" placeholder="Tambah keterangan...">
+      <button class="preview-btn-vo" id="previewBtnViewOnce" style="display:none;">
+        <div class="vo-icon">1</div>
+      </button>
+    </div>
+    <button class="preview-btn-send" id="previewBtnSend">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- Hidden file inputs -->
+<input type="file" id="fileAvatar" accept="image/*" hidden>
+<input type="file" id="fileBanner" accept="image/*" hidden>
+<input type="file" id="filePhoto" accept="image/*" hidden>
+<input type="file" id="fileSticker" accept="image/*" hidden>
+<input type="file" id="fileVideo" accept="video/*" hidden>
+<input type="file" id="filePayment" accept="image/*" hidden>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
